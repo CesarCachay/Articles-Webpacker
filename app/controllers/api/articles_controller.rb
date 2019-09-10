@@ -7,25 +7,25 @@ class Api::ArticlesController < ApplicationController
   end
 
   def show
-    @articles = Article.find(params[:id])
+    @article = Article.find(params[:id])
     render json: @article
   end
 
   def create
-    @article = Article.create(article_params)
+    @article = Article.new(article_params)
     if @article.save
-      render json :article, status: :created
+      render json: @article, status: :created
     else 
-      render json @article_errors, status: :unprocessable_entity
+      render json: @article_errors, status: :unprocessable_entity
     end
   end
 
   def update
     @article = Article.find(params[:id])
     if @article.update(article_params)
-      render json @article, status: :ok
+      render json: @article, status: :ok
     else 
-      render json @article_errors, status: unprocessable_entity
+      render json: @article_errors, status: unprocessable_entity
     end
   end
 
